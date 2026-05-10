@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Offline \n<font color="#02FEB0">Music Player</font></string>
+    <string name="select_language">Language</string>
+    <string name="msg_next">Next</string>
+    <string name="get_started">Get Started</string>
+    
+    <string name="obd_title_1">Control Your Sound</string>
+    <string name="obd_des_1">Fine-tune your music with a powerful built-in Equalizer for the perfect sound every time.</string>
+    
+    <string name="obd_title_2">Play Anytime, Anywhere</string>
+    <string name="obd_des_2">Enjoy your favorite tracks offline — smooth playback, beautiful design, and total freedom.</string>
+    
+    <string name="obd_title_3">Music Comes Alive</string>
+    <string name="obd_des_3">Experience stunning audio visualizations that move with your music.</string>
+    
+    <string name="save">Save</string>
+    <string name="next">Next</string>
+    <string name="ad">Ad</string>
+    <string name="ad_loading_content">Ad is loading…</string>
+    <string name="language">Language</string>
+</resources>

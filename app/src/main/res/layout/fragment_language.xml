@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_window_bg">
+
+    <com.duc.offlinemusicplayer.presentation.widget.SafeAreaView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.duc.offlinemusicplayer.presentation.widget.ToolbarView
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/btnOKContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showBackIcon="false"
+            app:title="@string/select_language" />
+
+        <FrameLayout
+            android:id="@+id/btnOKContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/btnTick"
+                style="@style/SquareImageButton"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="12dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_tick" />
+
+
+            <TextView
+                android:id="@+id/btnOK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/bg_button_primary"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:minHeight="32dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="4dp"
+                android:text="@string/next"
+                android:textColor="@color/neutral_950"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="26dp"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/adNative"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            tools:listitem="@layout/item_language" />
+
+        <ImageView
+            android:id="@+id/handClick"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintEnd_toEndOf="@id/recyclerView"
+            android:translationX="22dp"
+            android:rotation="-30"
+            android:translationY="-20dp"
+            android:tint="@color/black"
+            android:src="@drawable/hand_click"
+            app:layout_constraintTop_toTopOf="@id/recyclerView"/>
+
+        <com.leansoft.ads.view.NativeAdViewContainer
+            android:id="@+id/adNative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ads_layout_loaded="@layout/ad_native_medium_style_1"
+            app:ads_layout_loading="@layout/ad_native_medium_loading_style_1"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </com.duc.offlinemusicplayer.presentation.widget.SafeAreaView>
+</FrameLayout>

@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "616048039812",
+    "project_id": "ls33-offline-music-player",
+    "storage_bucket": "ls33-offline-music-player.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616048039812:android:13bddc4882504c062defd1",
+        "android_client_info": {
+          "package_name": "com.beat.music.mp3player.offline"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK2GTHfy-2i-QCm2xL4Nl7wdL_7MjRBbY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      },
+      "admob_app_id": "ca-app-pub-5889155949011891~2533106053"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616048039812:android:7a62aab896dda6e42defd1",
+        "android_client_info": {
+          "package_name": "com.duc.offlinemusicplayer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK2GTHfy-2i-QCm2xL4Nl7wdL_7MjRBbY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

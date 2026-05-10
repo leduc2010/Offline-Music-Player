@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.duc.offlinemusicplayer.presentation.widget.SafeAreaView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.duc.offlinemusicplayer.presentation.ui.uninstall.UninstallImpl">
+
+    <com.leansoft.ads.view.NativeAdViewContainer
+        android:id="@+id/nativeAdContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:ads_layout_loaded="@layout/ad_native_medium_style_1"
+        app:ads_layout_loading="@layout/ad_native_medium_loading_style_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</com.duc.offlinemusicplayer.presentation.widget.SafeAreaView>

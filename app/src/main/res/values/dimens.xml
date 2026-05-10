@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common Sizes -->
+    <dimen name="size_1">1dp</dimen>
+    <dimen name="size_2">2dp</dimen>
+    <dimen name="size_3">3dp</dimen>
+    <dimen name="size_4">4dp</dimen>
+    <dimen name="size_5">5dp</dimen>
+    <dimen name="size_6">6dp</dimen>
+    <dimen name="size_8">8dp</dimen>
+    <dimen name="size_10">10dp</dimen>
+    <dimen name="size_12">12dp</dimen>
+    <dimen name="size_14">14dp</dimen>
+    <dimen name="size_16">16dp</dimen>
+    <dimen name="size_20">20dp</dimen>
+    <dimen name="size_24">24dp</dimen>
+    <dimen name="size_28">28dp</dimen>
+    <dimen name="size_32">32dp</dimen>
+    <dimen name="size_40">40dp</dimen>
+    <dimen name="size_44">44dp</dimen>
+    <dimen name="size_48">48dp</dimen>
+    <dimen name="size_52">52dp</dimen>
+    <dimen name="size_56">56dp</dimen>
+    <dimen name="size_64">64dp</dimen>
+    <dimen name="size_72">72dp</dimen>
+    <dimen name="size_80">80dp</dimen>
+    <dimen name="size_85">85dp</dimen>
+    <dimen name="size_88">88dp</dimen>
+    <dimen name="size_96">96dp</dimen>
+    <dimen name="size_100">100dp</dimen>
+    <dimen name="size_120">120dp</dimen>
+    <dimen name="size_140">140dp</dimen>
+    <dimen name="size_180">180dp</dimen>
+    <dimen name="size_256">256dp</dimen>
+
+    <dimen name="size_1_5">1.5dp</dimen>
+    <dimen name="size_2_5">2.5dp</dimen>
+    <dimen name="size_3_5">3.5dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="text_size_6">6sp</dimen>
+    <dimen name="text_size_8">8sp</dimen>
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_32">32sp</dimen>
+    <dimen name="text_size_36">36sp</dimen>
+
+    <dimen name="padding_20">20dp</dimen>
+    <dimen name="padding_16">16dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+
+    <dimen name="radius_8">8dp</dimen>
+    <dimen name="radius_12">12dp</dimen>
+    <dimen name="radius_16">16dp</dimen>
+    <dimen name="radius_20">20dp</dimen>
+
+    <dimen name="ad_native_media_height">172dp</dimen>
+    <dimen name="ad_native_space_vertical">8dp</dimen>
+    <dimen name="primary_button_height">56dp</dimen>
+</resources>

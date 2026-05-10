@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/native_ad_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_native_ad_color_2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/size_8">
+
+        <TextView
+            android:id="@+id/ad_call_to_action"
+            style="@style/AdNative.CtaButton"
+            android:layout_marginTop="@dimen/size_8"
+            android:gravity="center"
+            tools:text="Install" />
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ad_native_media_height"
+            android:layout_marginTop="@dimen/size_4">
+
+            <com.google.android.gms.ads.nativead.MediaView
+                android:id="@+id/ad_media"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_ad_native_text"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingHorizontal="@dimen/size_5"
+                android:paddingVertical="@dimen/size_2"
+                android:text="@string/ad"
+                android:textColor="@color/neutral_100"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/ad_headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                style="@style/Body.Normal.M.16"
+                android:ellipsize="end"
+                android:maxLines="1"
+                tools:text="Lorem ipsum" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.gms.ads.nativead.NativeAdView>

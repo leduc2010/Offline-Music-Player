@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <!-- Primary Colors -->
+    <color name="primary_500">#8BE953</color>
+    <color name="primary_light">#02FEB0</color>
+    <color name="primary_gradient_start">#8BE953</color>
+    <color name="primary_gradient_end">#02FEB0</color>
+
+    <!-- Neutral Colors -->
+    <color name="neutral_950">#101211</color>
+    <color name="neutral_900">#292E2B</color>
+    <color name="neutral_800">#414945</color>
+    <color name="neutral_700">#59645E</color>
+    <color name="neutral_600">#717F78</color>
+    <color name="neutral_500">#8B9891</color>
+    <color name="neutral_400">#A6B0AB</color>
+    <color name="neutral_300">#C1C8C4</color>
+    <color name="neutral_200">#DCE0DE</color>
+    <color name="neutral_100">#F2F3F2</color>
+    <color name="neutral_50">#FFFFFF</color>
+
+    <color name="success_500">#00CC2C</color>
+    <color name="error_500">#FF0000</color>
+
+    <color name="text_primary">@color/neutral_50</color>
+    <color name="text_secondary">@color/neutral_400</color>
+    <color name="window_bg_color">@color/neutral_950</color>
+    
+    <color name="ad_loading_shimmer_bg_color">#2B2B2B</color>
+    <color name="ad_loading_shimmer_color">#989898</color>
+    <color name="bg_native_ad_color_1">#1C1C1E</color>
+    <color name="bg_native_ad_color_2">#242426</color>
+    <color name="transparent_white_10">#1AFFFFFF</color>
+</resources>

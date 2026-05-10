@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_bg_color">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@id/bottomLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/img_ob_1" />
+
+
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/Button.1.S.16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/neutral_50"
+            tools:text="@string/obd_title_1" />
+
+        <TextView
+            android:id="@+id/subTitle"
+            style="@style/Label.Medium.M.12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="start"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/neutral_400"
+            tools:text="@string/obd_des_1" />
+
+        <FrameLayout
+            android:id="@+id/adNativeSpace2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <include
+                layout="@layout/ad_native_medium_loading_style_1"
+                android:visibility="invisible" />
+
+            <com.leansoft.ads.view.NativeAdViewContainer
+                android:id="@+id/adNative2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:ads_layout_loaded="@layout/ad_native_medium_style_2"
+                app:ads_layout_loading="@layout/ad_native_medium_loading_style_1"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/controlLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"
+            android:paddingHorizontal="24dp">
+
+            <com.duc.offlinemusicplayer.presentation.widget.PillTabIndicatorView
+                android:id="@+id/indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start" />
+
+            <TextView
+                android:id="@+id/btnNext"
+                style="@style/Button.1.S.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:background="@drawable/bg_button_primary"
+                android:paddingHorizontal="26dp"
+                android:paddingVertical="6dp"
+                android:text="@string/next"
+                android:textColor="@color/neutral_950" />
+
+            <TextView
+                android:id="@+id/btnNextEasy"
+                style="@style/Button.2.S.14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:background="@drawable/bg_button_primary"
+                android:gravity="center"
+                android:paddingHorizontal="26dp"
+                android:paddingVertical="8dp"
+                android:text="@string/next"
+                android:textColor="@color/neutral_950"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/adNativeSpace1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                layout="@layout/ad_native_medium_loading_style_1"
+                android:visibility="invisible" />
+
+            <com.leansoft.ads.view.NativeAdViewContainer
+                android:id="@+id/adNative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp"
+                app:ads_layout_loaded="@layout/ad_native_medium_style_1"
+                app:ads_layout_loading="@layout/ad_native_medium_loading_style_1"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </FrameLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

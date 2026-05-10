@@ -1,0 +1,68 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Android Studio / IntelliJ specific
+*.iws
+*.out
+.idea/
+.idea/tasks.xml
+.idea/datasources.xml
+.idea/dataSources.ids
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+.idea/vcs.xml
+.idea/codeStyles/
+.idea/inspectionProfiles/
+.idea/copyright/
+.idea/shelf/
+
+# Gradle specific
+.gradle/
+build/
+*/build/
+
+# Kotlin specific
+*.kotlin_module
+.kotlin/
+
+# Hilt / Kapt / KSP generated
+**/build/generated/
+**/build/tmp/
+**/build/intermediates/
+**/build/outputs/
+**/build/reports/
+
+# Google Services
+google-services.json
+
+# Keys and Secrets
+*.jks
+*.keystore
+key.properties
+
+# System files
+captures/
+.externalNativeBuild/
+.cxx/
+.navigation/
+
+*.py
+*.txt
+
+# Libraries
+*.jar
+!libs/*.jar
