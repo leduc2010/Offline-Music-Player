@@ -1,8 +1,10 @@
 package com.duc.offlinemusicplayer.di
 
+import android.content.ContentResolver
 import android.content.Context
 import com.duc.offlinemusicplayer.data.source.local.pref.PreferenceHelper
 import com.duc.offlinemusicplayer.data.source.remote.cloud.FirebaseMgr
+import com.duc.offlinemusicplayer.domain.repository.AppSettingRepository
 import com.duc.offlinemusicplayer.presentation.ui.language.LanguageImpl
 import com.duc.offlinemusicplayer.presentation.ui.onboarding.OnboardingImpl
 import com.duc.offlinemusicplayer.splash.SplashImpl
@@ -40,6 +42,10 @@ class AppModule {
     fun providePreferenceHelper(@ApplicationContext context: Context): PreferenceHelper =
         PreferenceHelper(context)
 
+    @Provides
+    @Singleton
+    fun provideContentResolver(@ApplicationContext context: Context): ContentResolver =
+        context.contentResolver
 
     @Provides
     @Singleton
@@ -48,7 +54,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideLanguageInterface(firebaseMgr: FirebaseMgr): LeansoftLanguageInterface = LanguageImpl(firebaseMgr)
+    fun provideLanguageInterface(firebaseMgr: FirebaseMgr, appSettingRepository: AppSettingRepository): LeansoftLanguageInterface = LanguageImpl(firebaseMgr, appSettingRepository)
 
     @Provides
     @Singleton

@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.duc.offlinemusicplayer.data.source.local.pref.PreferenceHelper
 import com.duc.offlinemusicplayer.presentation.utils.AppLog
-import com.duc.offlinemusicplayer.presentation.utils.ext.findNavControllerSafely
+import com.duc.offlinemusicplayer.presentation.utils.findNavControllerSafely
 import com.duc.offlinemusicplayer.presentation.utils.setLocale
 import com.duc.offlinemusicplayer.presentation.viewmodel.NavigationViewModel
 import com.duc.offlinemusicplayer.presentation.viewmodel.SharedViewModel

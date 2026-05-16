@@ -13,7 +13,7 @@ class FirebaseMgr @Inject constructor() {
 
     init {
         val configSettings = remoteConfigSettings {
-            minimumFetchIntervalInSeconds = 3000
+            minimumFetchIntervalInSeconds = 300
         }
         remoteConfig.setConfigSettingsAsync(configSettings)
     }
@@ -22,11 +22,13 @@ class FirebaseMgr @Inject constructor() {
 
     fun getString(key: String): String = remoteConfig.getString(key)
 
-    fun fetch(onComplete: (Boolean) -> Unit) {
+    fun getLong(key: String): Long = remoteConfig.getLong(key)
+
+    fun getDouble(key: String): Double = remoteConfig.getDouble(key)
+
+    fun fetchAndActivate(onComplete: (Boolean) -> Unit) {
         remoteConfig.fetchAndActivate().addOnCompleteListener { task ->
             onComplete(task.isSuccessful)
         }
     }
-
-
 }

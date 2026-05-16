@@ -1,8 +1,11 @@
 package com.duc.offlinemusicplayer.presentation.utils
 
+import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
 import android.view.View
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 
 fun Int.dpToPx(): Int {
     return TypedValue.applyDimension(
@@ -38,9 +41,9 @@ fun Context.setLocale(languageCode: String?) {
     resources.updateConfiguration(config, resources.displayMetrics)
 }
 
-fun androidx.fragment.app.Fragment.findNavControllerSafely(): androidx.navigation.NavController? {
+fun androidx.fragment.app.Fragment.findNavControllerSafely(): NavController? {
     return if (isAdded) {
-        androidx.navigation.fragment.findNavController()
+        NavHostFragment.findNavController(this)
     } else {
         null
     }

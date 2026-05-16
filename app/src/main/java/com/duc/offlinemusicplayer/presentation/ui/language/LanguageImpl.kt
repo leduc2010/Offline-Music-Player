@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.duc.offlinemusicplayer.R
 import com.duc.offlinemusicplayer.data.source.remote.cloud.FirebaseMgr
 import com.duc.offlinemusicplayer.databinding.FragmentLanguageBinding
-import com.duc.offlinemusicplayer.domain.model.LanguageModel
+import com.duc.offlinemusicplayer.domain.repository.AppSettingRepository
 import com.duc.offlinemusicplayer.presentation.utils.safeOnClickListener
 import com.leansoft.ads.ui.language.LeansoftLanguageInterface
 import com.leansoft.ads.view.NativeAdViewContainer
@@ -19,7 +19,8 @@ import javax.inject.Singleton
 
 @Singleton
 class LanguageImpl @Inject constructor(
-    private val firebaseMgr: FirebaseMgr
+    private val firebaseMgr: FirebaseMgr,
+    private val appSettingRepository: AppSettingRepository
 ) : LeansoftLanguageInterface {
 
     private lateinit var binding: FragmentLanguageBinding
@@ -57,13 +58,12 @@ class LanguageImpl @Inject constructor(
 
         val languageAdapter = LanguageAdapter(
             onItemClick = { _ ->
-                // Callback set in updateUI
             },
             selectedLanguageCode = languageCodeSelected ?: ""
         )
         
         binding.toolbar.hideIconBack()
-        languageAdapter.setItems(getAllLanguageList())
+        languageAdapter.setItems(appSettingRepository.getListLanguages())
         binding.recyclerView.adapter = languageAdapter
 
         binding.btnTick.safeOnClickListener {
@@ -139,12 +139,4 @@ class LanguageImpl @Inject constructor(
         }
     }
 
-    private fun getAllLanguageList(): List<LanguageModel> {
-        return listOf(
-            LanguageModel("English", "en", "English", R.drawable.ic_flag_en),
-            LanguageModel("Vietnamese", "vi", "Tiếng Việt", R.drawable.ic_flag_vi),
-            LanguageModel("French", "fr", "Français", R.drawable.ic_flag_fr),
-            LanguageModel("Spanish", "es", "Español", R.drawable.ic_flag_es)
-        )
-    }
 }

@@ -1,6 +1,10 @@
 package com.duc.offlinemusicplayer.data.source.local.pref
 
 import android.content.Context
+import com.duc.offlinemusicplayer.R
+import com.duc.offlinemusicplayer.domain.model.LanguageModel
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -18,27 +22,43 @@ class PreferenceHelper @Inject constructor(
 
     var currentLanguage by gsonPref(
         "currentLanguage",
-        com.duc.offlinemusicplayer.domain.model.LanguageModel("English", "en", "English", com.duc.offlinemusicplayer.R.drawable.ic_flag_en),
-        com.duc.offlinemusicplayer.domain.model.LanguageModel::class.java
+        LanguageModel("English", "en", "English", R.drawable.ic_flag_us),
+        LanguageModel::class.java
     )
 
-    var listLanguage: List<com.duc.offlinemusicplayer.domain.model.LanguageModel>
+    private val defaultLanguageList = listOf(
+        LanguageModel("English", "en", "English", R.drawable.ic_flag_us),
+        LanguageModel("French", "fr", "Français", R.drawable.ic_flag_france),
+        LanguageModel("Marathi", "hi", "मराठी (India)", R.drawable.ic_flag_indian),
+        LanguageModel("Spanish", "es", "Espanol", R.drawable.ic_flag_spain),
+        LanguageModel("Chinese", "zh", "Chinese", R.drawable.ic_flag_china),
+        LanguageModel("Portuguese", "pt", "Português (Portugal)", R.drawable.ic_flag_portugal),
+        LanguageModel("Russian", "ru", "Русский", R.drawable.ic_flag_russia),
+        LanguageModel("Indonesian", "in", "Indonesian", R.drawable.ic_flag_indo),
+        LanguageModel("Filipino", "fil", "Philippines", R.drawable.ic_flag_philippines),
+        LanguageModel("Bengali", "bn", "বাংলা", R.drawable.ic_flag_bangladesh),
+        LanguageModel("Portuguese (Brazil)", "br", "Português (Brazil)", R.drawable.ic_flag_brazil),
+        LanguageModel("Afrikaans", "af", "Afrikaans", R.drawable.ic_flag_south_africa),
+        LanguageModel("German", "de", "Deutsch", R.drawable.ic_flag_german),
+        LanguageModel("English (Canada)", "en-rCA", "Canada", R.drawable.ic_flag_canada),
+        LanguageModel("English (UK)", "en-rGB", "English", R.drawable.ic_flag_england),
+        LanguageModel("Korean", "ko", "Korean", R.drawable.ic_flag_south_korea),
+        LanguageModel("Dutch", "nl", "Dutch", R.drawable.ic_flag_netherlands)
+    )
+
+    var listLanguage: List<LanguageModel>
         get() {
             val json = getString("listLanguage", "")
             return if (json.isNullOrEmpty()) {
-                listOf(
-                    com.duc.offlinemusicplayer.domain.model.LanguageModel("English", "en", "English", com.duc.offlinemusicplayer.R.drawable.ic_flag_en),
-                    com.duc.offlinemusicplayer.domain.model.LanguageModel("Vietnamese", "vi", "Tiếng Việt", com.duc.offlinemusicplayer.R.drawable.ic_flag_vn)
-                )
+                defaultLanguageList
             } else {
-                com.google.gson.Gson().fromJson(json, object : com.google.gson.reflect.TypeToken<List<com.duc.offlinemusicplayer.domain.model.LanguageModel>>() {}.type)
+                Gson().fromJson(json, object : TypeToken<List<LanguageModel>>() {}.type)
             }
         }
         set(value) {
-            putString("listLanguage", com.google.gson.Gson().toJson(value))
+            putString("listLanguage", Gson().toJson(value))
         }
 
-    // Helper functions from Preferences base class (if not already exposed)
     private fun getString(key: String, defValue: String?): String? {
         val field = Preferences::class.java.getDeclaredField("prefs")
         field.isAccessible = true
