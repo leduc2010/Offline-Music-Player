@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_dark"
+    android:orientation="vertical"
+    android:paddingTop="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/sort_by"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!-- Sort by group -->
+    <RadioGroup
+        android:id="@+id/rgSortBy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp">
+
+        <RadioButton
+            android:id="@+id/rbAlphabetical"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:button="@null"
+            android:checked="true"
+            android:drawableEnd="@drawable/selector_radio"
+            android:gravity="center_vertical"
+            android:text="@string/sort_alphabetical"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/rbDateAdded"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:button="@null"
+            android:drawableEnd="@drawable/selector_radio"
+            android:gravity="center_vertical"
+            android:text="@string/sort_added_time"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/rbDuration"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:button="@null"
+            android:drawableEnd="@drawable/selector_radio"
+            android:gravity="center_vertical"
+            android:text="@string/sort_duration"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="8dp"
+        android:background="@color/divider" />
+
+    <!-- Order group -->
+    <RadioGroup
+        android:id="@+id/rgOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp">
+
+        <RadioButton
+            android:id="@+id/rbAtoZ"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:button="@null"
+            android:checked="true"
+            android:drawableEnd="@drawable/selector_radio"
+            android:gravity="center_vertical"
+            android:text="@string/sort_a_to_z"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/rbZtoA"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:button="@null"
+            android:drawableEnd="@drawable/selector_radio"
+            android:gravity="center_vertical"
+            android:text="@string/sort_z_to_a"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RadioGroup>
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            style="@style/Widget.AppCompat.Button.Borderless" />
+
+        <Button
+            android:id="@+id/btnApply"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/green_primary"
+            android:text="@string/apply"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

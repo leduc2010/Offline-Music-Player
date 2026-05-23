@@ -28,6 +28,7 @@ class MediaStoreScanner @Inject constructor(
             MediaStore.Audio.Media.ALBUM,
             MediaStore.Audio.Media.DURATION,
             MediaStore.Audio.Media.DATE_ADDED,
+            MediaStore.Audio.Media.ALBUM_ID,
             MediaStore.Audio.Media.RELATIVE_PATH,
             MediaStore.Audio.Media.DATA,
             MediaStore.Audio.Media.IS_MUSIC,
@@ -48,6 +49,7 @@ class MediaStoreScanner @Inject constructor(
             val albumColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM)
             val durationColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)
             val dateAddedColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATE_ADDED)
+            val albumIdColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID)
             val relativePathColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.RELATIVE_PATH)
             val dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)
 
@@ -58,10 +60,12 @@ class MediaStoreScanner @Inject constructor(
                 val album = cursor.getString(albumColumn).orEmpty()
                 val duration = cursor.getLong(durationColumn)
                 val dateAdded = cursor.getLong(dateAddedColumn)
+                val albumId = cursor.getLong(albumIdColumn)
                 val relativePath = if (relativePathColumn >= 0) cursor.getString(relativePathColumn).orEmpty() else ""
                 val dataPath = if (dataColumn >= 0) cursor.getString(dataColumn).orEmpty() else ""
 
                 val contentUri = Uri.withAppendedPath(collection, id.toString()).toString()
+                val albumArtUri = Uri.parse("content://media/external/audio/albumart/$albumId").toString()
                 val folderPath = if (relativePath.isNotBlank()) relativePath else dataPath.substringBeforeLast('/', "")
 
                 songs.add(
@@ -72,6 +76,7 @@ class MediaStoreScanner @Inject constructor(
                         album = album,
                         durationMs = duration,
                         contentUri = contentUri,
+                        albumArtUri = albumArtUri,
                         dateAddedSec = dateAdded,
                         folderPath = folderPath,
                     )

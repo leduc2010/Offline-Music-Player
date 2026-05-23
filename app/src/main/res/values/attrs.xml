@@ -9,4 +9,13 @@
         <attr name="title" format="string" />
         <attr name="showBackIcon" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="CommonToolbarView">
+        <attr name="ctvTitle" format="string" />
+        <attr name="ctvTitleTextStyle" format="reference" />
+        <attr name="ctvShowStartIcon" format="boolean" />
+        <attr name="ctvShowEndIcon" format="boolean" />
+        <attr name="ctvStartIconSrc" format="reference" />
+        <attr name="ctvEndIconSrc" format="reference" />
+    </declare-styleable>
 </resources>

@@ -56,13 +56,21 @@ key.properties
 
 # System files
 captures/
+
+
 .externalNativeBuild/
 .cxx/
 .navigation/
 
 *.py
 *.txt
+*.md
 
 # Libraries
 *.jar
 !libs/*.jar
+.agents
+.claude
+plans/
+AGENTS.md
+CLAUDE.md

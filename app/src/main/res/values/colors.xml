@@ -35,4 +35,10 @@
     <color name="bg_native_ad_color_1">#1C1C1E</color>
     <color name="bg_native_ad_color_2">#242426</color>
     <color name="transparent_white_10">#1AFFFFFF</color>
+
+    <!-- Music player aliases -->
+    <color name="bg_dark">@color/neutral_950</color>
+    <color name="bg_player">@color/neutral_900</color>
+    <color name="green_primary">@color/primary_light</color>
+    <color name="divider">@color/neutral_800</color>
 </resources>

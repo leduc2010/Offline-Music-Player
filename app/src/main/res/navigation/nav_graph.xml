@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/songsFragment">
+
+    <fragment
+        android:id="@+id/songsFragment"
+        android:name="com.duc.offlinemusicplayer.presentation.ui.songs.SongsFragment"
+        android:label="Songs">
+        <action
+            android:id="@+id/action_songs_to_search"
+            app:destination="@id/searchFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.duc.offlinemusicplayer.presentation.ui.search.SearchFragment"
+        android:label="Search" />
+
 </navigation>

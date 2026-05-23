@@ -11,8 +11,10 @@ fun SongEntity.toDomain(): Song {
         album = album,
         durationMs = durationMs,
         contentUri = contentUri,
+        albumArtUri = albumArtUri,
         dateAddedSec = dateAddedSec,
         folderPath = folderPath,
+        isFavorite = isFavorite,
     )
 }
 
@@ -24,7 +26,9 @@ fun Song.toEntity(): SongEntity {
         album = album,
         durationMs = durationMs,
         contentUri = contentUri,
+        albumArtUri = albumArtUri,
         dateAddedSec = dateAddedSec,
         folderPath = folderPath,
+        isFavorite = isFavorite,
     )
 }

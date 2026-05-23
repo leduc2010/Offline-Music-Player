@@ -32,6 +32,9 @@ class LanguageImpl @Inject constructor(
     private val delaySeconds get() = firebaseMgr.getString("delay_btn_next_lfo").toLongOrNull() ?: 0L
     private var isDelayFinished = false
     private var isSelected = false
+    private var lastNeedEasy = false
+    private var languageAdapter: LanguageAdapter? = null
+    private var selectedLanguageCode: String = "en"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,21 +59,32 @@ class LanguageImpl @Inject constructor(
         isSelected = isLfoDupScreen
         binding.handClick.isVisible = !isSelected
 
-        val languageAdapter = LanguageAdapter(
-            onItemClick = { _ ->
+        selectedLanguageCode = languageCodeSelected ?: ""
+        isSelected = selectedLanguageCode.isNotEmpty() && isLfoDupScreen
+        binding.handClick.isVisible = !isSelected
+        languageAdapter = LanguageAdapter(
+            onItemClick = { item ->
+                selectedLanguageCode = item.code
+                binding.handClick.isVisible = false
+                isSelected = true
+                if (!isLfoDupScreen) {
+                    isDelayFinished = true
+                    selectLanguageListener?.invoke(item.code)
+                }
+                refreshButtonVisibility(lastNeedEasy)
             },
-            selectedLanguageCode = languageCodeSelected ?: ""
+            selectedLanguageCode = selectedLanguageCode
         )
-        
+
         binding.toolbar.hideIconBack()
-        languageAdapter.setItems(appSettingRepository.getListLanguages())
+        languageAdapter?.setItems(appSettingRepository.getListLanguages())
         binding.recyclerView.adapter = languageAdapter
 
         binding.btnTick.safeOnClickListener {
-            setLanguageListener?.invoke(languageAdapter.selectedLanguageCode)
+            setLanguageListener?.invoke(selectedLanguageCode)
         }
         binding.btnOK.safeOnClickListener {
-            setLanguageListener?.invoke(languageAdapter.selectedLanguageCode)
+            setLanguageListener?.invoke(selectedLanguageCode)
         }
     }
 
@@ -98,6 +112,7 @@ class LanguageImpl @Inject constructor(
     }
 
     override fun updateUI(needEasy: Boolean) {
+        lastNeedEasy = needEasy
         if (isEasyMode && needEasy || !isLfoDupScreen) {
             isDelayFinished = true
         }
@@ -106,20 +121,6 @@ class LanguageImpl @Inject constructor(
             triggerDisplayLogic(needEasy)
         } else {
             refreshButtonVisibility(needEasy)
-        }
-
-        (binding.recyclerView.adapter as? LanguageAdapter)?.let { adapter ->
-            adapter.onItemClick = { item ->
-                binding.handClick.isVisible = false
-                if (!isSelected) {
-                    isSelected = true
-                    refreshButtonVisibility(needEasy)
-                }
-
-                if (!isLfoDupScreen) {
-                    selectLanguageListener?.invoke(item.code)
-                }
-            }
         }
     }
 

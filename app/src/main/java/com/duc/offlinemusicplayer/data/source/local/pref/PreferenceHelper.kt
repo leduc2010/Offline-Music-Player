@@ -46,9 +46,11 @@ class PreferenceHelper @Inject constructor(
         LanguageModel("Dutch", "nl", "Dutch", R.drawable.ic_flag_netherlands)
     )
 
+    private var listLanguageJson by stringPref("listLanguage", "")
+
     var listLanguage: List<LanguageModel>
         get() {
-            val json = getString("listLanguage", "")
+            val json = listLanguageJson
             return if (json.isNullOrEmpty()) {
                 defaultLanguageList
             } else {
@@ -56,20 +58,6 @@ class PreferenceHelper @Inject constructor(
             }
         }
         set(value) {
-            putString("listLanguage", Gson().toJson(value))
+            listLanguageJson = Gson().toJson(value)
         }
-
-    private fun getString(key: String, defValue: String?): String? {
-        val field = Preferences::class.java.getDeclaredField("prefs")
-        field.isAccessible = true
-        val prefs = field.get(this) as android.content.SharedPreferences
-        return prefs.getString(key, defValue)
-    }
-
-    private fun putString(key: String, value: String?) {
-        val field = Preferences::class.java.getDeclaredField("prefs")
-        field.isAccessible = true
-        val prefs = field.get(this) as android.content.SharedPreferences
-        prefs.edit().putString(key, value).apply()
-    }
 }

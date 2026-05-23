@@ -80,7 +80,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseVM> : Fragment() {
         }
     }
 
-    open fun onBackPressed() {
+    open fun onBackPressed() {  
         findNavControllerSafely()?.navigateUp()
     }
 
