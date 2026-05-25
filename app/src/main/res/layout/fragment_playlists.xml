@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/img_window_bg">
 
-    <!-- Header Toolbar -->
     <com.duc.offlinemusicplayer.presentation.widget.CommonToolbarView
         android:id="@+id/toolbar"
         android:layout_width="0dp"
@@ -21,7 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- 2x2 Quick Playlist Categories -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutQuickPlaylists"
         android:layout_width="0dp"
@@ -32,7 +30,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-        <!-- Favourite Songs -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btnFavoriteSongs"
             android:layout_width="0dp"
@@ -184,7 +181,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Most Listening -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btnMostListening"
             android:layout_width="0dp"
@@ -336,7 +332,7 @@
             android:layout_marginStart="8dp"
             android:includeFontPadding="false"
             android:lineSpacingMultiplier="0.9"
-            android:text="New\nPlaylist"
+            android:text="@string/new_nplaylist"
             android:textColor="@color/neutral_950"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvAddPlus"

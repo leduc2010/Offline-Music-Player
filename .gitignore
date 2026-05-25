@@ -46,9 +46,6 @@ build/
 **/build/outputs/
 **/build/reports/
 
-# Google Services
-google-services.json
-
 # Keys and Secrets
 *.jks
 *.keystore

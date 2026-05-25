@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "828594163998",
+    "project_id": "offline-music-player-10ec8",
+    "storage_bucket": "offline-music-player-10ec8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828594163998:android:03cacbd41e6e8363ba390f",
+        "android_client_info": {
+          "package_name": "com.duc.offlinemusicplayer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCneIh_etsN6fjibUTc5IskBzC76Kv1ozA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
