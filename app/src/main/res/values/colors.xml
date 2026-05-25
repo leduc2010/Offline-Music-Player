@@ -41,4 +41,5 @@
     <color name="bg_player">@color/neutral_900</color>
     <color name="green_primary">@color/primary_light</color>
     <color name="divider">@color/neutral_800</color>
+    <color name="transparent_black">#00101211</color>
 </resources>

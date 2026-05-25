@@ -15,11 +15,17 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+import com.duc.offlinemusicplayer.domain.repository.PlaylistRepository
+import com.duc.offlinemusicplayer.domain.model.Playlist
+
 @HiltViewModel
 class SongsViewModel @Inject constructor(
     private val musicRepository: MusicRepository,
     private val playbackRepository: PlaybackRepository,
+    private val playlistRepository: PlaylistRepository,
 ) : BaseVM() {
+
+    val playlists: LiveData<List<Playlist>> = playlistRepository.observeAllPlaylists().asLiveData()
 
     private val rawSongs: LiveData<List<Song>> = musicRepository.observeSongs().asLiveData()
 
@@ -69,6 +75,12 @@ class SongsViewModel @Inject constructor(
 
     fun toggleFavorite(song: Song) {
         viewModelScope.launch { musicRepository.setFavorite(song.id, !song.isFavorite) }
+    }
+
+    fun addSongToPlaylist(playlistId: Long, songId: Long) {
+        viewModelScope.launch {
+            playlistRepository.addSongToPlaylist(playlistId, songId)
+        }
     }
 
     fun setSortOrder(order: SortOrder) { _sortOrder.value = order }

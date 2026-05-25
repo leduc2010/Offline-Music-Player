@@ -2,20 +2,61 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/songsFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
-        android:id="@+id/songsFragment"
-        android:name="com.duc.offlinemusicplayer.presentation.ui.songs.SongsFragment"
-        android:label="Songs">
+        android:id="@+id/mainFragment"
+        android:name="com.duc.offlinemusicplayer.presentation.ui.MainFragment"
+        android:label="Main">
         <action
-            android:id="@+id/action_songs_to_search"
-            app:destination="@id/searchFragment" />
+            android:id="@+id/action_main_to_language"
+            app:destination="@id/languageFragment" />
+        <action
+            android:id="@+id/action_main_to_visualizer"
+            app:destination="@id/visualizerFragment" />
+        <action
+            android:id="@+id/action_main_to_now_playing"
+            app:destination="@id/nowPlayingFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.duc.offlinemusicplayer.presentation.ui.search.SearchFragment"
-        android:label="Search" />
+        android:id="@+id/languageFragment"
+        android:name="com.duc.offlinemusicplayer.presentation.ui.language.LanguageFragment"
+        android:label="Language" />
+
+    <fragment
+        android:id="@+id/visualizerFragment"
+        android:name="com.duc.offlinemusicplayer.presentation.ui.visualizer.VisualizerFragment"
+        android:label="Visualizer">
+        <action
+            android:id="@+id/action_visualizer_to_my_visualizer"
+            app:destination="@id/myVisualizerFragment" />
+        <action
+            android:id="@+id/action_visualizer_to_detail"
+            app:destination="@id/visualizerDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/myVisualizerFragment"
+        android:name="com.duc.offlinemusicplayer.presentation.ui.visualizer.MyVisualizerFragment"
+        android:label="My Visualizer">
+        <action
+            android:id="@+id/action_my_visualizer_to_detail"
+            app:destination="@id/visualizerDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/visualizerDetailFragment"
+        android:name="com.duc.offlinemusicplayer.presentation.ui.visualizer.VisualizerDetailFragment"
+        android:label="Visualizer Detail">
+        <argument
+            android:name="visualizerId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nowPlayingFragment"
+        android:name="com.duc.offlinemusicplayer.presentation.ui.songs.NowPlayingFragment"
+        android:label="Now Playing" />
 
 </navigation>

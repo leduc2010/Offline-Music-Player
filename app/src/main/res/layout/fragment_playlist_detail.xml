@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.duc.offlinemusicplayer.presentation.widget.SafeAreaView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_window_bg">
+
+    <!-- Header Toolbar with Back Button -->
+    <com.duc.offlinemusicplayer.presentation.widget.CommonToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        app:ctvTitle="Playlist Title"
+        app:ctvTitleTextStyle="@style/Body.Large.M.20"
+        app:ctvShowStartIcon="true"
+        app:ctvShowEndIcon="true"
+        app:ctvStartIconSrc="@drawable/ic_back"
+        app:ctvEndIconSrc="@drawable/ic_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Play & Shuffle Actions Header -->
+    <LinearLayout
+        android:id="@+id/layoutPlayShuffle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <!-- Play All -->
+        <LinearLayout
+            android:id="@+id/btnPlay"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_song_capsule_button"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_play"
+                app:tint="@color/white" />
+
+            <TextView
+                style="@style/Body.Normal.R.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/play"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <!-- Shuffle -->
+        <LinearLayout
+            android:id="@+id/btnShuffle"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_song_capsule_button"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_shuffle"
+                app:tint="@color/white" />
+
+            <TextView
+                style="@style/Body.Normal.R.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/shuffle"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Empty State View -->
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutPlayShuffle">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_playlist"
+            app:tint="@color/neutral_700" />
+
+        <TextView
+            style="@style/Body.Normal.M.16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="No songs in this playlist"
+            android:textColor="@color/text_secondary" />
+    </LinearLayout>
+
+    <!-- Songs List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSongs"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutPlayShuffle"
+        tools:listitem="@layout/item_song" />
+
+</com.duc.offlinemusicplayer.presentation.widget.SafeAreaView>

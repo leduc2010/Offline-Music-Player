@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="12dp">
+
+    <!-- Playlist Artwork Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardArtwork"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/neutral_900"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/ivArtwork"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:padding="12dp"
+            android:src="@drawable/ic_playlist"
+            app:tint="@color/primary_light" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Info Column -->
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Name Playlist"
+        style="@style/Body.Normal.M.16"
+        android:textColor="@color/text_primary"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintStart_toEndOf="@id/cardArtwork"
+        app:layout_constraintEnd_toStartOf="@id/ivPin"
+        app:layout_constraintTop_toTopOf="@id/cardArtwork"
+        app:layout_constraintBottom_toTopOf="@id/tvCount" />
+
+    <TextView
+        android:id="@+id/tvCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="0 Songs"
+        style="@style/Body.Small.R.14"
+        android:textColor="@color/text_secondary"
+        app:layout_constraintStart_toEndOf="@id/cardArtwork"
+        app:layout_constraintEnd_toStartOf="@id/ivPin"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintBottom_toBottomOf="@id/cardArtwork" />
+
+    <!-- Pin Indicator Icon -->
+    <ImageView
+        android:id="@+id/ivPin"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_pin"
+        android:visibility="gone"
+        app:tint="@color/primary_light"
+        app:layout_constraintEnd_toStartOf="@id/btnMore"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Action Menu Button -->
+    <ImageView
+        android:id="@+id/btnMore"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_more_vert"
+        android:background="?android:attr/actionBarItemBackground"
+        android:padding="2dp"
+        app:tint="@color/text_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

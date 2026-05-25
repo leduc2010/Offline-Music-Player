@@ -6,6 +6,7 @@ import com.duc.offlinemusicplayer.databinding.FragmentSongsBinding
 import com.duc.offlinemusicplayer.domain.model.SortOrder
 import com.duc.offlinemusicplayer.presentation.base.BaseFragment
 import com.duc.offlinemusicplayer.presentation.ui.songs.SongsFragmentDirections
+import com.duc.offlinemusicplayer.presentation.utils.findNavControllerSafely
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,7 +16,39 @@ class SongsFragment : BaseFragment<FragmentSongsBinding, SongsViewModel>() {
         SongListAdapter(
             onSongClick = { song, _ -> mViewModel.playSong(song) },
             onFavoriteClick = { mViewModel.toggleFavorite(it) },
-            onMoreClick = { /* TODO show context menu */ },
+            onMoreClick = { song ->
+                val list = mViewModel.songs.value.orEmpty()
+                val idx = list.indexOfFirst { it.id == song.id }
+                val view = if (idx >= 0) {
+                    mBinding.rvSongs.findViewHolderForAdapterPosition(idx)?.itemView?.findViewById<android.view.View>(R.id.ivMore) ?: mBinding.rvSongs
+                } else {
+                    mBinding.rvSongs
+                }
+                val popup = androidx.appcompat.widget.PopupMenu(requireContext(), view)
+                popup.menu.add(0, 1, 0, "Add to Playlist")
+                popup.setOnMenuItemClickListener { menuItem ->
+                    if (menuItem.itemId == 1) {
+                        val playlists = mViewModel.playlists.value.orEmpty()
+                        if (playlists.isEmpty()) {
+                            android.widget.Toast.makeText(requireContext(), "Please create a playlist first", android.widget.Toast.LENGTH_SHORT).show()
+                        } else {
+                            val playlistPopup = androidx.appcompat.widget.PopupMenu(requireContext(), view)
+                            playlists.forEachIndexed { index, playlist ->
+                                playlistPopup.menu.add(0, index, index, playlist.name)
+                            }
+                            playlistPopup.setOnMenuItemClickListener { plMenuItem ->
+                                val selectedPlaylist = playlists[plMenuItem.itemId]
+                                mViewModel.addSongToPlaylist(selectedPlaylist.id, song.id)
+                                android.widget.Toast.makeText(requireContext(), "Added to ${selectedPlaylist.name}", android.widget.Toast.LENGTH_SHORT).show()
+                                true
+                            }
+                            playlistPopup.show()
+                        }
+                        true
+                    } else false
+                }
+                popup.show()
+            }
         )
     }
 
@@ -39,10 +72,10 @@ class SongsFragment : BaseFragment<FragmentSongsBinding, SongsViewModel>() {
         }
 
         mBinding.toolbar.setOnEndClick {
-            navigationViewModel.navigate(SongsFragmentDirections.actionSongsToSearch())
+            findNavControllerSafely()?.navigate(SongsFragmentDirections.actionSongsToSearch())
         }
         mBinding.toolbar.setOnStartClick {
-            // TODO open drawer/menu action
+            navigationViewModel.openSettingDrawer()
         }
 
         mViewModel.songs.observe(viewLifecycleOwner) { adapter.submitList(it) }

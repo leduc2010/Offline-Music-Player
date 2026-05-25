@@ -1,5 +1,6 @@
 package com.duc.offlinemusicplayer.presentation.ui.search
 
+import android.widget.PopupMenu
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +11,7 @@ import com.duc.offlinemusicplayer.domain.model.SearchTab
 import com.duc.offlinemusicplayer.domain.model.SortOrder
 import com.duc.offlinemusicplayer.presentation.base.BaseFragment
 import com.duc.offlinemusicplayer.presentation.ui.songs.SortBottomSheetFragment
+import com.duc.offlinemusicplayer.presentation.utils.findNavControllerSafely
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,8 +22,42 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
         SearchResultsAdapter(
             onSongClick = { mViewModel.playSong(it) },
             onSongFavoriteClick = { mViewModel.toggleFavorite(it) },
-            onSongMoreClick = { /* TODO context menu */ },
-            onPlaylistClick = { /* TODO open playlist */ },
+            onSongMoreClick = { song ->
+                val view = mBinding.rvResults
+                val popup = PopupMenu(requireContext(), view)
+                popup.menu.add(0, 1, 0, "Add to Playlist")
+                popup.setOnMenuItemClickListener { menuItem ->
+                    if (menuItem.itemId == 1) {
+                        val playlists = mViewModel.playlists.value.orEmpty()
+                        if (playlists.isEmpty()) {
+                            android.widget.Toast.makeText(requireContext(), "Please create a playlist first", android.widget.Toast.LENGTH_SHORT).show()
+                        } else {
+                            val playlistPopup = PopupMenu(requireContext(), view)
+                            playlists.forEachIndexed { index, playlist ->
+                                playlistPopup.menu.add(0, index, index, playlist.name)
+                            }
+                            playlistPopup.setOnMenuItemClickListener { plMenuItem ->
+                                val selectedPlaylist = playlists[plMenuItem.itemId]
+                                mViewModel.addSongToPlaylist(selectedPlaylist.id, song.id)
+                                android.widget.Toast.makeText(requireContext(), "Added to ${selectedPlaylist.name}", android.widget.Toast.LENGTH_SHORT).show()
+                                true
+                            }
+                            playlistPopup.show()
+                        }
+                        true
+                    } else false
+                }
+                popup.show()
+            },
+            onPlaylistClick = { playlist ->
+                findNavControllerSafely()?.navigate(
+                    SearchFragmentDirections.actionSearchToPlaylistDetail(
+                        type = "CUSTOM",
+                        playlistId = playlist.id,
+                        title = playlist.name
+                    )
+                )
+            },
             onAlbumClick = { /* TODO open album */ },
             onArtistClick = { /* TODO open artist */ },
             onFolderClick = { /* TODO open folder */ },
@@ -68,6 +104,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 (tab.tag as? SearchTab)?.let { mViewModel.setTab(it) }
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab) = Unit
             override fun onTabReselected(tab: TabLayout.Tab) = Unit
         })
@@ -124,25 +161,31 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
             SearchTab.ALL -> buildList {
                 if (results.songs.isNotEmpty()) {
                     add(SearchItem.Header(SearchTab.SONGS))
-                    results.songs.take(MAX_PER_SECTION_SONGS).forEach { add(SearchItem.SongRow(it)) }
+                    results.songs.take(MAX_PER_SECTION_SONGS)
+                        .forEach { add(SearchItem.SongRow(it)) }
                 }
                 if (results.playlists.isNotEmpty()) {
                     add(SearchItem.Header(SearchTab.PLAYLISTS))
-                    results.playlists.take(MAX_PER_SECTION_OTHER).forEach { add(SearchItem.PlaylistRow(it)) }
+                    results.playlists.take(MAX_PER_SECTION_OTHER)
+                        .forEach { add(SearchItem.PlaylistRow(it)) }
                 }
                 if (results.albums.isNotEmpty()) {
                     add(SearchItem.Header(SearchTab.ALBUMS))
-                    results.albums.take(MAX_PER_SECTION_OTHER).forEach { add(SearchItem.AlbumRow(it)) }
+                    results.albums.take(MAX_PER_SECTION_OTHER)
+                        .forEach { add(SearchItem.AlbumRow(it)) }
                 }
                 if (results.artists.isNotEmpty()) {
                     add(SearchItem.Header(SearchTab.ARTISTS))
-                    results.artists.take(MAX_PER_SECTION_OTHER).forEach { add(SearchItem.ArtistRow(it)) }
+                    results.artists.take(MAX_PER_SECTION_OTHER)
+                        .forEach { add(SearchItem.ArtistRow(it)) }
                 }
                 if (results.folders.isNotEmpty()) {
                     add(SearchItem.Header(SearchTab.FOLDERS))
-                    results.folders.take(MAX_PER_SECTION_OTHER).forEach { add(SearchItem.FolderRow(it)) }
+                    results.folders.take(MAX_PER_SECTION_OTHER)
+                        .forEach { add(SearchItem.FolderRow(it)) }
                 }
             }
+
             SearchTab.SONGS -> results.songs.map { SearchItem.SongRow(it) }
             SearchTab.PLAYLISTS -> results.playlists.map { SearchItem.PlaylistRow(it) }
             SearchTab.ALBUMS -> results.albums.map { SearchItem.AlbumRow(it) }
@@ -152,12 +195,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
     }
 
     private fun tabTitleRes(tab: SearchTab): Int = when (tab) {
-        SearchTab.ALL -> com.duc.offlinemusicplayer.R.string.tab_all
-        SearchTab.SONGS -> com.duc.offlinemusicplayer.R.string.songs
-        SearchTab.PLAYLISTS -> com.duc.offlinemusicplayer.R.string.playlists
-        SearchTab.ALBUMS -> com.duc.offlinemusicplayer.R.string.albums
-        SearchTab.ARTISTS -> com.duc.offlinemusicplayer.R.string.artists
-        SearchTab.FOLDERS -> com.duc.offlinemusicplayer.R.string.folders
+        SearchTab.ALL -> R.string.tab_all
+        SearchTab.SONGS -> R.string.songs
+        SearchTab.PLAYLISTS -> R.string.playlists
+        SearchTab.ALBUMS -> R.string.albums
+        SearchTab.ARTISTS -> R.string.artists
+        SearchTab.FOLDERS -> R.string.folders
     }
 
     private fun formatSortLabel(order: SortOrder): String {
@@ -167,8 +210,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
             SortOrder.DURATION_ASC, SortOrder.DURATION_DESC -> getString(R.string.sort_duration)
         }
         val sortOrderLabel = when (order) {
-            SortOrder.ALPHABETICAL_ASC, SortOrder.DATE_ADDED_ASC, SortOrder.DURATION_ASC -> getString(R.string.sort_order_az)
-            SortOrder.ALPHABETICAL_DESC, SortOrder.DATE_ADDED_DESC, SortOrder.DURATION_DESC -> getString(R.string.sort_order_za)
+            SortOrder.ALPHABETICAL_ASC, SortOrder.DATE_ADDED_ASC, SortOrder.DURATION_ASC -> getString(
+                R.string.sort_order_az
+            )
+
+            SortOrder.ALPHABETICAL_DESC, SortOrder.DATE_ADDED_DESC, SortOrder.DURATION_DESC -> getString(
+                R.string.sort_order_za
+            )
         }
         return getString(R.string.sort_label_with_order, sortBy, sortOrderLabel)
     }

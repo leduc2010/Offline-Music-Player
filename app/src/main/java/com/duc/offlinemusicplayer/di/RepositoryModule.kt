@@ -3,10 +3,12 @@ package com.duc.offlinemusicplayer.di
 import com.duc.offlinemusicplayer.data.repository.AppSettingRepositoryImpl
 import com.duc.offlinemusicplayer.data.repository.MusicRepositoryImpl
 import com.duc.offlinemusicplayer.data.repository.PlaylistRepositoryImpl
+import com.duc.offlinemusicplayer.data.repository.VisualizerRepositoryImpl
 import com.duc.offlinemusicplayer.domain.repository.AppSettingRepository
 import com.duc.offlinemusicplayer.domain.repository.MusicRepository
 import com.duc.offlinemusicplayer.domain.repository.PlaybackRepository
 import com.duc.offlinemusicplayer.domain.repository.PlaylistRepository
+import com.duc.offlinemusicplayer.domain.repository.VisualizerRepository
 import com.duc.offlinemusicplayer.playback.PlayerRepositoryImpl
 import dagger.Binds
 import dagger.Module
@@ -29,4 +31,7 @@ abstract class RepositoryModule {
 
     @Binds @Singleton
     abstract fun bindPlaylistRepository(impl: PlaylistRepositoryImpl): PlaylistRepository
+
+    @Binds @Singleton
+    abstract fun bindVisualizerRepository(impl: VisualizerRepositoryImpl): VisualizerRepository
 }

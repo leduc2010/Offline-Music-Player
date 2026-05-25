@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_tab_graph"
+    app:startDestination="@id/songsFragment">
+
+    <fragment
+        android:id="@+id/songsFragment"
+        android:name="com.duc.offlinemusicplayer.presentation.ui.songs.SongsFragment"
+        android:label="Songs">
+        <action
+            android:id="@+id/action_songs_to_search"
+            app:destination="@id/searchFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.duc.offlinemusicplayer.presentation.ui.search.SearchFragment"
+        android:label="Search">
+        <action
+            android:id="@+id/action_search_to_playlist_detail"
+            app:destination="@id/playlistDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/playlistsFragment"
+        android:name="com.duc.offlinemusicplayer.presentation.ui.playlist.PlaylistsFragment"
+        android:label="Playlists">
+        <action
+            android:id="@+id/action_playlists_to_search"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_playlists_to_detail"
+            app:destination="@id/playlistDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/playlistDetailFragment"
+        android:name="com.duc.offlinemusicplayer.presentation.ui.playlist.PlaylistDetailFragment"
+        android:label="Playlist Detail">
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <argument
+            android:name="playlistId"
+            app:argType="long" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_playlist_detail_to_search"
+            app:destination="@id/searchFragment" />
+    </fragment>
+
+</navigation>

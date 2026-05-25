@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bgr_leansoft_dialog"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        style="@style/Body.Large.M.20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/feedback"
+        android:textColor="@color/neutral_950" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_leansoft_edit_text"
+        android:backgroundTint="@color/neutral_100"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="11dp"
+        app:boxBackgroundMode="none"
+        app:counterEnabled="true"
+        app:counterMaxLength="500"
+        app:expandedHintEnabled="false"
+        app:hintEnabled="false">
+
+        <EditText
+            android:id="@+id/edt_feedback"
+            style="@style/Body.Normal.R.16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|start"
+            android:hint="@string/feedback"
+            android:textColor="@color/neutral_950"
+            android:textColorHint="@color/neutral_500"
+            android:lines="5"
+            android:maxLength="500"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            tools:ignore="RtlSymmetry" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/btn_feedback"
+        style="@style/Button.1.S.20"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_button_positive"
+        android:gravity="center"
+        android:text="@string/feedback"
+        android:textColor="@color/neutral_950" />
+</LinearLayout>

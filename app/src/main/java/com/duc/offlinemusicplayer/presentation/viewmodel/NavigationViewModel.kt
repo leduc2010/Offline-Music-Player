@@ -33,6 +33,12 @@ class NavigationViewModel @Inject constructor() : ViewModel() {
     private val _showPaywall = MutableLiveData<Event<Unit>>()
     val showPaywall: LiveData<Event<Unit>> = _showPaywall
 
+    private val _openSettingDrawer = MutableLiveData<Event<Unit>>()
+    val openSettingDrawer: LiveData<Event<Unit>> = _openSettingDrawer
+
+    private val _closeSettingDrawer = MutableLiveData<Event<Unit>>()
+    val closeSettingDrawer: LiveData<Event<Unit>> = _closeSettingDrawer
+
     fun showNativeFull(placement: String) {
         _showNativeFullEvent.postValue(Event(placement))
     }
@@ -86,6 +92,14 @@ class NavigationViewModel @Inject constructor() : ViewModel() {
 
     fun navigatePaywall() {
         _showPaywall.postValue(Event(Unit))
+    }
+
+    fun openSettingDrawer() {
+        _openSettingDrawer.postValue(Event(Unit))
+    }
+
+    fun closeSettingDrawer() {
+        _closeSettingDrawer.postValue(Event(Unit))
     }
 }
 

@@ -11,12 +11,28 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
+import com.duc.offlinemusicplayer.data.source.local.pref.PreferenceHelper
+
 class PlaylistRepositoryImpl @Inject constructor(
     private val playlistDao: PlaylistDao,
+    private val preferenceHelper: PreferenceHelper,
 ) : PlaylistRepository {
 
     override fun observeAllPlaylists(): Flow<List<Playlist>> =
-        playlistDao.observeAllPlaylists().map { list -> list.map { it.toDomain() } }
+        playlistDao.observeAllPlaylists().map { list ->
+            val pinnedMap = preferenceHelper.getPinnedPlaylistsMap()
+            list.map { item ->
+                val pinnedAt = pinnedMap[item.id] ?: 0L
+                item.toDomain().copy(
+                    isPinned = pinnedAt > 0L,
+                    pinnedAt = pinnedAt
+                )
+            }.sortedWith(
+                compareByDescending<Playlist> { it.isPinned }
+                    .thenByDescending { if (it.isPinned) it.pinnedAt else 0L }
+                    .thenBy { it.name.lowercase() }
+            )
+        }
 
     override suspend fun createPlaylist(name: String): Long =
         playlistDao.insertPlaylist(PlaylistEntity(name = name, createdAt = System.currentTimeMillis()))
@@ -33,5 +49,20 @@ class PlaylistRepositoryImpl @Inject constructor(
         playlistDao.observeSongsInPlaylist(playlistId).map { list -> list.map { it.toDomain() } }
 
     override suspend fun searchPlaylists(query: String): List<Playlist> =
-        playlistDao.searchPlaylists(query.trim()).map { it.toDomain() }
+        playlistDao.searchPlaylists(query.trim()).map { item ->
+            val pinnedMap = preferenceHelper.getPinnedPlaylistsMap()
+            val pinnedAt = pinnedMap[item.id] ?: 0L
+            item.toDomain().copy(
+                isPinned = pinnedAt > 0L,
+                pinnedAt = pinnedAt
+            )
+        }.sortedWith(
+            compareByDescending<Playlist> { it.isPinned }
+                .thenByDescending { if (it.isPinned) it.pinnedAt else 0L }
+                .thenBy { it.name.lowercase() }
+        )
+
+    override fun pinPlaylist(playlistId: Long, pin: Boolean) {
+        preferenceHelper.pinPlaylist(playlistId, pin)
+    }
 }

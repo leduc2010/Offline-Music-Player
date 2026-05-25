@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.duc.offlinemusicplayer.presentation.widget.SafeAreaView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_window_bg">
+
+    <!-- Header Toolbar -->
+    <com.duc.offlinemusicplayer.presentation.widget.CommonToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        app:ctvEndIconSrc="@drawable/ic_search"
+        app:ctvShowEndIcon="true"
+        app:ctvShowStartIcon="true"
+        app:ctvStartIconSrc="@drawable/ic_menu"
+        app:ctvTitle="@string/app_name_2"
+        app:ctvTitleTextStyle="@style/Body.Large.M.20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 2x2 Quick Playlist Categories -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutQuickPlaylists"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <!-- Favourite Songs -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnFavoriteSongs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/btnRecentPlayed"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivFavoriteSongs"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_favorite_songs"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvFavoriteSongsTitle"
+                style="@style/Body.Normal.M.16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Favourite Songs"
+                android:textColor="@color/text_primary"
+                app:layout_constraintBottom_toTopOf="@id/tvFavoriteSongsCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivFavoriteSongs"
+                app:layout_constraintTop_toTopOf="@id/ivFavoriteSongs" />
+
+            <TextView
+                android:id="@+id/tvFavoriteSongsCount"
+                style="@style/Body.Small.R.14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="0 Songs"
+                android:textColor="@color/text_secondary"
+                app:layout_constraintBottom_toBottomOf="@id/ivFavoriteSongs"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivFavoriteSongs"
+                app:layout_constraintTop_toBottomOf="@id/tvFavoriteSongsTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Recent Played -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnRecentPlayed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnFavoriteSongs"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivRecentPlayed"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_recent_played"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRecentPlayedTitle"
+                style="@style/Body.Normal.M.16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Recent Played"
+                android:textColor="@color/text_primary"
+                app:layout_constraintBottom_toTopOf="@id/tvRecentPlayedCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivRecentPlayed"
+                app:layout_constraintTop_toTopOf="@id/ivRecentPlayed" />
+
+            <TextView
+                android:id="@+id/tvRecentPlayedCount"
+                style="@style/Body.Small.R.14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="0 Songs"
+                android:textColor="@color/text_secondary"
+                app:layout_constraintBottom_toBottomOf="@id/ivRecentPlayed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivRecentPlayed"
+                app:layout_constraintTop_toBottomOf="@id/tvRecentPlayedTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Recent Added -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnRecentAdded"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/btnMostListening"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnFavoriteSongs">
+
+            <ImageView
+                android:id="@+id/ivRecentAdded"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_recent_added"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRecentAddedTitle"
+                style="@style/Body.Normal.M.16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Recent Added"
+                android:textColor="@color/text_primary"
+                app:layout_constraintBottom_toTopOf="@id/tvRecentAddedCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivRecentAdded"
+                app:layout_constraintTop_toTopOf="@id/ivRecentAdded" />
+
+            <TextView
+                android:id="@+id/tvRecentAddedCount"
+                style="@style/Body.Small.R.14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="0 Songs"
+                android:textColor="@color/text_secondary"
+                app:layout_constraintBottom_toBottomOf="@id/ivRecentAdded"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivRecentAdded"
+                app:layout_constraintTop_toBottomOf="@id/tvRecentAddedTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Most Listening -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnMostListening"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnRecentAdded"
+            app:layout_constraintTop_toBottomOf="@id/btnRecentPlayed">
+
+            <ImageView
+                android:id="@+id/ivMostListening"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_most_listening"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvMostListeningTitle"
+                style="@style/Body.Normal.M.16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Most Listening"
+                android:textColor="@color/text_primary"
+                app:layout_constraintBottom_toTopOf="@id/tvMostListeningCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivMostListening"
+                app:layout_constraintTop_toTopOf="@id/ivMostListening" />
+
+            <TextView
+                android:id="@+id/tvMostListeningCount"
+                style="@style/Body.Small.R.14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="0 Songs"
+                android:textColor="@color/text_secondary"
+                app:layout_constraintBottom_toBottomOf="@id/ivMostListening"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivMostListening"
+                app:layout_constraintTop_toBottomOf="@id/tvMostListeningTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutMyPlaylistHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutQuickPlaylists">
+
+        <TextView
+            style="@style/Body.Large.M.20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My playlist"
+            android:textColor="@color/text_primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnSort"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="?android:attr/actionBarItemBackground"
+            android:src="@drawable/ic_sort"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/neutral_50" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMyPlaylists"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutMyPlaylistHeader"
+        tools:listitem="@layout/item_playlist" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.727" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnNewPlaylist"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:background="@drawable/bg_new_playlist"
+        android:clickable="true"
+        android:elevation="6dp"
+        android:focusable="true"
+        android:paddingHorizontal="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/guideLine"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <!-- Plus Icon -->
+        <ImageView
+            android:id="@+id/ivAddIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_checkbox_on"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/neutral_950" />
+
+        <!-- Plus indicator (draw custom or use plus text character since it's cleaner than checkbox_on) -->
+        <TextView
+            android:id="@+id/tvAddPlus"
+            style="@style/Body.Large.M.20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="+"
+            android:textColor="@color/neutral_950"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/Body.Small.B.14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:includeFontPadding="false"
+            android:lineSpacingMultiplier="0.9"
+            android:text="New\nPlaylist"
+            android:textColor="@color/neutral_950"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvAddPlus"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.duc.offlinemusicplayer.presentation.widget.SafeAreaView>

@@ -5,4 +5,6 @@ data class Playlist(
     val name: String,
     val songCount: Int,
     val createdAt: Long,
+    val isPinned: Boolean = false,
+    val pinnedAt: Long = 0L,
 )

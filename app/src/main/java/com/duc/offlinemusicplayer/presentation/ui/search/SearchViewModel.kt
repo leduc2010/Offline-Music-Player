@@ -3,6 +3,7 @@ package com.duc.offlinemusicplayer.presentation.ui.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.duc.offlinemusicplayer.domain.model.PlaybackState
 import com.duc.offlinemusicplayer.domain.model.SearchResults
@@ -39,6 +40,7 @@ class SearchViewModel @Inject constructor(
     val activeTab: LiveData<SearchTab> = _activeTab
     val sortOrder: LiveData<SortOrder> = _sortOrder
     val results: LiveData<SearchResults> = _results
+    val playlists: LiveData<List<com.duc.offlinemusicplayer.domain.model.Playlist>> = playlistRepository.observeAllPlaylists().asLiveData()
 
     val playbackState: LiveData<PlaybackState> = playbackRepository.observePlaybackState()
 
@@ -84,6 +86,12 @@ class SearchViewModel @Inject constructor(
                 }
                 _results.postValue(currentResults.copy(songs = updatedSongs))
             }
+        }
+    }
+
+    fun addSongToPlaylist(playlistId: Long, songId: Long) {
+        viewModelScope.launch {
+            playlistRepository.addSongToPlaylist(playlistId, songId)
         }
     }
 

@@ -50,4 +50,11 @@
     <string name="artist_subtitle_format">%1$d Songs • %2$d Albums</string>
 
     <string name="app_admob_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="feedback">Feedback</string>
+    <string name="rate_us">Rate us</string>
+    <string name="setting">Setting</string>
+    <string name="hey_can_i_ask_you">Hey, can i ask you?</string>
+    <string name="how_is_the_experience_of_our_app">How is the experience of our app?</string>
+    <string name="my_visualizer">My visualizer</string>
+    <string name="visualizer">Visualizer</string>
 </resources>

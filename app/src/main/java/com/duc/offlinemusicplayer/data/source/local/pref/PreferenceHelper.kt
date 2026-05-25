@@ -47,6 +47,46 @@ class PreferenceHelper @Inject constructor(
     )
 
     private var listLanguageJson by stringPref("listLanguage", "")
+    var downloadedVisualizerIdsJson by stringPref("downloadedVisualizerIdsJson", "[]")
+    var appliedVisualizerId by stringPref("appliedVisualizerId", "")
+
+    var recentPlayedIdsJson by stringPref("recentPlayedIdsJson", "[]")
+    var mostListeningCountsJson by stringPref("mostListeningCountsJson", "{}")
+
+    fun getRecentPlayedIds(): List<Long> {
+        val json = recentPlayedIdsJson
+        if (json.isNullOrEmpty()) return emptyList()
+        return try {
+            val type = object : TypeToken<List<Long>>() {}.type
+            Gson().fromJson(json, type) ?: emptyList()
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    fun addRecentPlayedSong(songId: Long) {
+        val list = getRecentPlayedIds().toMutableList()
+        list.remove(songId)
+        list.add(0, songId)
+        if (list.size > 50) list.removeAt(list.lastIndex)
+        recentPlayedIdsJson = Gson().toJson(list)
+
+        // Increment most listening counts
+        val counts = getMostListeningCounts().toMutableMap()
+        counts[songId] = (counts[songId] ?: 0) + 1
+        mostListeningCountsJson = Gson().toJson(counts)
+    }
+
+    fun getMostListeningCounts(): Map<Long, Int> {
+        val json = mostListeningCountsJson
+        if (json.isNullOrEmpty()) return emptyMap()
+        return try {
+            val type = object : TypeToken<Map<Long, Int>>() {}.type
+            Gson().fromJson(json, type) ?: emptyMap()
+        } catch (e: Exception) {
+            emptyMap()
+        }
+    }
 
     var listLanguage: List<LanguageModel>
         get() {
@@ -60,4 +100,27 @@ class PreferenceHelper @Inject constructor(
         set(value) {
             listLanguageJson = Gson().toJson(value)
         }
+
+    var pinnedPlaylistsJson by stringPref("pinnedPlaylistsJson", "{}")
+
+    fun getPinnedPlaylistsMap(): Map<Long, Long> {
+        val json = pinnedPlaylistsJson
+        if (json.isNullOrEmpty()) return emptyMap()
+        return try {
+            val type = object : TypeToken<Map<Long, Long>>() {}.type
+            Gson().fromJson(json, type) ?: emptyMap()
+        } catch (e: Exception) {
+            emptyMap()
+        }
+    }
+
+    fun pinPlaylist(playlistId: Long, pin: Boolean) {
+        val map = getPinnedPlaylistsMap().toMutableMap()
+        if (pin) {
+            map[playlistId] = System.currentTimeMillis()
+        } else {
+            map.remove(playlistId)
+        }
+        pinnedPlaylistsJson = Gson().toJson(map)
+    }
 }

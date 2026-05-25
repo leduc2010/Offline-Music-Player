@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bgr_leansoft_dialog"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_leansoft_sticker"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        style="@style/Body.Large.M.20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/hey_can_i_ask_you"
+        android:textColor="@color/neutral_950"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/Body.Normal.R.16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/how_is_the_experience_of_our_app"
+        android:textColor="@color/neutral_950" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ic_star_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:src="@drawable/ic_star_selector" />
+
+        <ImageView
+            android:id="@+id/ic_star_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:src="@drawable/ic_star_selector" />
+
+        <ImageView
+            android:id="@+id/ic_star_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:src="@drawable/ic_star_selector" />
+
+        <ImageView
+            android:id="@+id/ic_star_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:src="@drawable/ic_star_selector" />
+
+        <ImageView
+            android:id="@+id/ic_star_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:src="@drawable/ic_star_selector" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_rate"
+        style="@style/Button.2.S.16"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_button_selector"
+        android:enabled="false"
+        android:gravity="center"
+        android:text="@string/rate_us"
+        android:textColor="@color/neutral_50" />
+</LinearLayout>

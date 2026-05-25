@@ -12,4 +12,5 @@ interface PlaylistRepository {
     suspend fun removeSongFromPlaylist(playlistId: Long, songId: Long)
     fun observeSongsInPlaylist(playlistId: Long): Flow<List<Song>>
     suspend fun searchPlaylists(query: String): List<Playlist>
+    fun pinPlaylist(playlistId: Long, pin: Boolean)
 }
